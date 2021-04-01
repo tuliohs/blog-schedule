@@ -23,6 +23,9 @@ const {
   useWebp,
 } = require("../config/constants.js");
 
+//var gm = require('gm');
+var gm = require('gm')//.subClass({ appPath: "/usr/local/bin/" });
+
 const getHandler = async (req, res) => {
   const media = await Media.findOne({
     _id: req.params.mediaId,
@@ -91,13 +94,21 @@ const postHandler = async (req, res) => {
   let isThumbGenerated = false; // to indicate if the thumbnail name is to be saved to the DB
   try {
     if (imagePattern.test(req.files.file.mimetype)) {
-      await thumbnail.forImage(filePath, thumbPath, {
-        width: constants.thumbnailWidth,
-      });
-      if (useWebp) {
-        await convertToWebp(thumbPath);
-      }
-      isThumbGenerated = false;
+      //await thumbnail.forImage(filePath, thumbPath, {
+      //  width: constants.thumbnailWidth,
+      //});
+      //if (useWebp) {
+      //  await convertToWebp(thumbPath);
+      //}
+      gm(filePath)
+        .options({ imageMagick: true }).resize(240, 240)
+        .write(thumbPath,
+          function (err) {
+            if (!err) console.log('Done');
+            else console.log(err);
+          })
+
+      isThumbGenerated = true;
     }
     if (videoPattern.test(req.files.file.mimetype)) {
       await thumbnail.forVideo(filePath, thumbPath, {

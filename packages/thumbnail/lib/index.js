@@ -37,8 +37,8 @@ const thumbGenerator = (source, destination, options, type) =>
       convert = spawn("convert", [
         source,
         "-thumbnail",
-        `${options.width}x${options.height}${
-          options.preserveAspectRatio ? "" : "!"
+        //'\\(', 'img2.jpg', '-resize', '10x10', '\\)',
+        `${options.width}x${options.height}${options.preserveAspectRatio ? "" : "!"
         }`,
         destination,
       ]);
@@ -55,8 +55,8 @@ const thumbGenerator = (source, destination, options, type) =>
       );
     }
 
-    // convert.stdout.on('data', data => console.log(data.toString()))
-    // convert.stderr.on('data', data => console.error(data.toString()))
+    convert.stdout.on('data', data => console.log(data.toString()))
+    convert.stderr.on('data', data => console.error(data.toString()))
 
     convert.on("exit", (code) => {
       if (code !== 0) {

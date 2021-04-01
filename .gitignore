@@ -16,10 +16,13 @@ coverage
 .vscode
 
 # Env file
-*.env
+#*.env
 
 # report files
 report*.json
 
 # yarn
 .yarn
+
+packages/api/local_directory_to_hold_user_data/uploads
+packages/api/local_directory_to_hold_user_data/thumbs
