@@ -70,7 +70,6 @@ const Scaffold = ({ children, props }) => {
   const classes = useStyles();//= useStyles(props);
   const theme = useTheme();
   const { siteInfo, profile, navigation } = useContext(MyContext)
-  console.log(children, 'propsf')
   const [mobileOpen, setMobileOpen] = useState(false);
 
   function handleDrawerToggle() {

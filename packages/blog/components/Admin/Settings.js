@@ -92,7 +92,7 @@ const Settings = (props) => {
 
   const classes = useStyles();
   const fetch = new FetchBuilder()
-    .setUrl(`${props.address.backend}/graph`)
+    .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
     .setIsGraphQLEndpoint(true)
     .setAuthToken(props.auth.token);
 
@@ -125,7 +125,7 @@ const Settings = (props) => {
       if (response.settings) {
         setSettingsState(response.settings);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const setSettingsState = (settingsResponse) => {

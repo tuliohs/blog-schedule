@@ -38,13 +38,10 @@ class CodeInjector extends React.Component {
   }
 }
 
-CodeInjector.propTypes = {
-  codeForHead: PropTypes.string,
-};
+//CodeInjector.propTypes = {
+//  codeForHead: PropTypes.string,
+//};
 
-const mapStateToProps = (state) => ({
-  codeForHead: state.siteinfo.codeInjectionHead,
-});
-
+//const mapStateToProps = (state) => ({  codeForHead: state.siteinfo.codeInjectionHead,});
 //export default connect(mapStateToProps)(CodeInjector);
 export default CodeInjector

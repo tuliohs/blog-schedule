@@ -29,7 +29,7 @@ const NavigationLinks = (props) => {
         }
         `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
       .setPayload(query)

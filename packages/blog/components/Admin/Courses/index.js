@@ -42,7 +42,7 @@ const Index = (props) => {
           <GridListTileBar title="Add new" />
         </>
       ),
-      Detail: <CourseEditor markDirty={() => {}} closeEditor={() => {}} />,
+      Detail: <CourseEditor markDirty={() => { }} closeEditor={() => { }} />,
     });
     setComponentsMap(map);
   }, [coursesPaginationOffset]);
@@ -61,8 +61,8 @@ const Index = (props) => {
     Detail: (
       <CourseEditor
         courseId={course.id}
-        markDirty={() => {}}
-        closeEditor={() => {}}
+        markDirty={() => { }}
+        closeEditor={() => { }}
       />
     ),
   });
@@ -81,7 +81,7 @@ const Index = (props) => {
     }
     `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)

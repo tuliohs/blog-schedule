@@ -116,7 +116,7 @@ const PageDesigner = (props) => {
   const [isNewThemeTextValid, setIsNewThemeTextValid] = useState(false);
   const themeInputRef = useRef();
   const fetch = new FetchBuilder()
-    .setUrl(`${props.address.backend}/graph`)
+    .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
     .setIsGraphQLEndpoint(true)
     .setAuthToken(props.auth.token);
 
@@ -141,7 +141,7 @@ const PageDesigner = (props) => {
       if (response.themes) {
         setInstalledThemes(response.themes);
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const onSelection = (forSection, componentName) => {

@@ -10,7 +10,8 @@ export var MyContext = createContext({
         email: "",
     },
     authProp: {},
-    navigation: {}
+    navigation: {},
+    layout: {}
 
 })
 export default MyContext

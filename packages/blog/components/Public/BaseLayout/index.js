@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 //import { connect } from "react-redux";
 import Head from "next/head";
 import { formulateMediaUrl } from "../../../lib/utils.js";
@@ -65,13 +65,11 @@ const MasterLayout = ({ children, title, props }) => {
 //  layout: PropTypes.object.isRequired,
 //  address: addressProps,
 //};
-
-const mapStateToProps = (state) => ({
-  networkAction: state.networkAction,
-  siteInfo: state.siteinfo,
-  layout: state.layout,
-  address: state.address,
-});
-
+//const mapStateToProps = (state) => ({
+//  networkAction: state.networkAction,
+//  siteInfo: state.siteinfo,
+//  layout: state.layout,
+//  address: state.address,
+//});
 //export default connect(mapStateToProps)(MasterLayout);
 export default MasterLayout

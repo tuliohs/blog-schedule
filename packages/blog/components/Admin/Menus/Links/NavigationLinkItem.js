@@ -46,7 +46,7 @@ const NavigationLinkItem = (props) => {
   const [dirty, setDirty] = useState(false);
   const [requestInProgress, setRequestInProgress] = useState(false);
   const fetcher = new FetchBuilder()
-    .setUrl(`${props.address.backend}/graph`)
+    .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
     .setIsGraphQLEndpoint(true)
     .setAuthToken(props.auth.token);
 

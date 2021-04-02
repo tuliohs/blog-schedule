@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { addressProps, authProps, publicCourse } from "../../types";
 import { ENROLL_BUTTON_TEXT } from "../../config/strings";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
-import { networkAction, setAppMessage } from "../../redux/actions";
-import AppMessage from "../../models/app-message";
+//import { networkAction, setAppMessage } from "../../redux/actions";
+//import AppMessage from "../../models/app-message";
 
 const Free = ({ course, auth, dispatch, address }) => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const Free = ({ course, auth, dispatch, address }) => {
   const handleClick = async () => {
     try {
       setDisabled(true);
-      dispatch(networkAction(true));
+      //dispatch(networkAction(true));
 
       let initiatePaymentResponse = await makePaymentRequest({
         courseId: course.id,
@@ -34,10 +34,10 @@ const Free = ({ course, auth, dispatch, address }) => {
       if (initiatePaymentResponse.status === "success") {
         router.reload();
       } else if (initiatePaymentResponse.status === "failed") {
-        dispatch(setAppMessage(new AppMessage(initiatePaymentResponse.error)));
+        //dispatch(setAppMessage(new AppMessage(initiatePaymentResponse.error)));
       }
     } catch (err) {
-      dispatch(setAppMessage(new AppMessage(err.message)));
+      //dispatch(setAppMessage(new AppMessage(err.message)));
     } finally {
       dispatch(networkAction(false));
       setDisabled(false);
@@ -78,13 +78,7 @@ Free.propTypes = {
   address: addressProps,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  address: state.address,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatch: dispatch,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Free);
+//const mapStateToProps = (state) => ({auth: state.auth,address: state.address,})
+//const mapDispatchToProps = (dispatch) => ({dispatch: dispatch,});
+//export default connect(mapStateToProps, mapDispatchToProps)(Free);
+export default Free

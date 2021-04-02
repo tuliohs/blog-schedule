@@ -123,10 +123,6 @@ export async function getServerSideProps(context) {
 //  courses: PropTypes.arrayOf(publicCourse),
 //  siteinfo: siteInfoProps,
 //}; 
-
-const mapStateToProps = (state) => ({
-  siteinfo: state.siteinfo,
-});
-
+//const mapStateToProps = (state) => ({  siteinfo: state.siteinfo,});
 //export default connect(mapStateToProps)(Index);
 export default (Index);

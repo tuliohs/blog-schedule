@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import { Divider, Grid } from "@material-ui/core";
 import { useRouter } from "next/router";
 import Section from "./Section";
@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Template = ({ children, props }) => {
   const classes = useStyles()// useStyles(props);
-  //const router = useRouter();
-  console.log(children, 'propTemplate')
+  const router = useRouter();
+  console.log(router, 'router')
 
   return (
     <>
       <Grid container className={classes.mainContent}>
         {/** Top */}
-        {/*{router.pathname === "/" && <Section name="top" />}*/}
+        {router.pathname === "/" && <Section name="top" />}
 
         <Grid container item direction="row" xs>
           {/** Main */}
@@ -30,21 +30,21 @@ const Template = ({ children, props }) => {
             <Grid container item>
               {children}
             </Grid>
-            {/*<Grid container item>
+            <Grid container item>
               <Section name="bottom" />
-            </Grid>*/}
+            </Grid>
           </Grid>
 
           {/** Aside */}
-          {/*<Grid container item direction="column" xs={12} md={4}>
+          <Grid container item direction="column" xs={12} md={4}>
             <Section name="aside" />
-          </Grid>*/}
+          </Grid>
         </Grid>
       </Grid>
 
       {/** Footer */}
       <>
-        {/*<Divider light />
+        <Divider light />
         <Grid container direction="row">
           <Grid container item direction="column" xs={12} md={6}>
             <Section name="footerLeft" />
@@ -52,7 +52,7 @@ const Template = ({ children, props }) => {
           <Grid container item direction="column" xs={12} md={6}>
             <Section name="footerRight" />
           </Grid>
-        </Grid>*/}
+        </Grid>
       </>
     </>
   );

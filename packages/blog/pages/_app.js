@@ -17,19 +17,14 @@ import { JWT_COOKIE_NAME, USERID_COOKIE_NAME } from "../config/constants.js";
 import { ThemeProvider, unstable_createMuiStrictModeTheme } from "@material-ui/styles";
 import { responsiveFontSizes, createMuiTheme } from "@material-ui/core";
 import { CONSOLE_MESSAGE_THEME_INVALID } from "../config/strings.js";
+import defaultState from '../config/defaultState'
 //import wrapper from "../redux/store.js";
 //import "@courselit/rich-text/dist/main.css";
 import dynamic from "next/dynamic";
 
-const CodeInjector = dynamic(() =>
-  import("../components/Public/CodeInjector.js")
-);
-
+const CodeInjector = dynamic(() => import("../components/Public/CodeInjector.js"))
 
 import { getBackendAddress } from "../lib/utils.js";
-
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import MyContext from '../context/MyContext';
 
 const muiTheme = responsiveFontSizes(createMuiTheme({
@@ -53,11 +48,10 @@ function MyApp({ Component, pageProps }) {
   const [siteInfo, setSiteInfo] = useState({
     title: "Forgetion",
     subtitle: "Learning Bases in Not Forgetion",
-    logopath: "/vercel.svg",
+    logopath: "6065dde6d5f9071a90a73a6c",
     currencyUnit: "d",
     currencyISOCode: "a",
   })
-
   const [profile, setProfile] = useState({
     isCreator: false,
     name: "",
@@ -67,18 +61,17 @@ function MyApp({ Component, pageProps }) {
     //purchases: [""],
 
   })
-
   const [authProp, setAuthProp] = useState({
     guest: false,
     token: ""
   });
-
   const [navigation, setNavigation] = useState([{
     text: "Home",
     destination: "/",
     category: "main",
     newTab: false
   }])
+  const [layout, setLayout] = useState(defaultState.layout)
 
   //const muiTheme = responsiveFontSizes(theme);
   //const { theme, address } = store.getState();
@@ -121,10 +114,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <MyContext.Provider value={{ siteInfo, profile, authProp, navigation }}>
+      <MyContext.Provider value={{ siteInfo, profile, authProp, navigation, layout }}>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
-          <CodeInjector />
+          <CodeInjector props={{ codeForHead: "<>customization headers</>" }} />
         </ThemeProvider>
       </MyContext.Provider>
     </>
@@ -149,21 +142,21 @@ async function updateSiteTheme(backend) {
       .build();
     const response = await fetch.exec();
     tema = response
+
   } catch (e) {
     console.log(e, 'erro fetch')
   }
+  return tema
 }
 
 //export const getStaticProps  = async () => {
 //export async function getServerSideProps
 export const getServerSideProps = async (context) => {
-  console.log('12a')
 
   const { req } = context;
   const courses = await updateSiteTheme(getBackendAddress(
     req?.headers?.host || 'localhost:8000'
   ));
-  console.log(courses, 'courses')
   return { props: { courses } };
 }
 

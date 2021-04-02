@@ -113,7 +113,7 @@ const LessonEditor = (props) => {
     `;
 
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
@@ -156,9 +156,8 @@ const LessonEditor = (props) => {
         downloadable: ${lesson.downloadable},
         type: ${lesson.type.toUpperCase()},
         content: "${TextEditor.stringify(lesson.content)}",
-        contentURL: ${
-          lesson.contentURL !== "" ? '"' + lesson.contentURL + '"' : null
-        },
+        contentURL: ${lesson.contentURL !== "" ? '"' + lesson.contentURL + '"' : null
+      },
         requiresEnrollment: ${lesson.requiresEnrollment}
       }) {
         id,
@@ -171,7 +170,7 @@ const LessonEditor = (props) => {
     }
     `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
@@ -196,9 +195,8 @@ const LessonEditor = (props) => {
         downloadable: ${lesson.downloadable},
         type: ${lesson.type.toUpperCase()},
         content: "${TextEditor.stringify(lesson.content)}",
-        contentURL: ${
-          lesson.contentURL !== "" ? '"' + lesson.contentURL + '"' : null
-        },
+        contentURL: ${lesson.contentURL !== "" ? '"' + lesson.contentURL + '"' : null
+      },
         courseId: "${lesson.courseId}",
         requiresEnrollment: ${lesson.requiresEnrollment}
       }) {
@@ -207,7 +205,7 @@ const LessonEditor = (props) => {
     }
     `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
@@ -239,7 +237,7 @@ const LessonEditor = (props) => {
       }
       `;
       const fetch = new FetchBuilder()
-        .setUrl(`${props.address.backend}/graph`)
+        .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
         .setPayload(query)
         .setIsGraphQLEndpoint(true)
         .setAuthToken(props.auth.token)
@@ -335,18 +333,18 @@ const LessonEditor = (props) => {
               String.prototype.toUpperCase.call(LESSON_TYPE_TEXT),
               String.prototype.toUpperCase.call(LESSON_TYPE_QUIZ),
             ].includes(lesson.type) && (
-              <div className={classes.formControl}>
-                <MediaSelector
-                  title={CONTENT_URL_LABEL}
-                  src={lesson.contentURL}
-                  onSelection={(mediaId) =>
-                    setLesson(
-                      Object.assign({}, lesson, { contentURL: mediaId })
-                    )
-                  }
-                />
-              </div>
-            )}
+                <div className={classes.formControl}>
+                  <MediaSelector
+                    title={CONTENT_URL_LABEL}
+                    src={lesson.contentURL}
+                    onSelection={(mediaId) =>
+                      setLesson(
+                        Object.assign({}, lesson, { contentURL: mediaId })
+                      )
+                    }
+                  />
+                </div>
+              )}
             {lesson.type.toLowerCase() === LESSON_TYPE_TEXT && (
               <Grid
                 container
@@ -369,25 +367,25 @@ const LessonEditor = (props) => {
             {[LESSON_TYPE_VIDEO, LESSON_TYPE_AUDIO, LESSON_TYPE_PDF].includes(
               lesson.type
             ) && (
-              <Grid
-                container
-                justify="space-between"
-                alignItems="center"
-                className={classes.formControl}
-              >
-                <Grid item>
-                  <Typography variant="body1">{DOWNLOADABLE_SWITCH}</Typography>
+                <Grid
+                  container
+                  justify="space-between"
+                  alignItems="center"
+                  className={classes.formControl}
+                >
+                  <Grid item>
+                    <Typography variant="body1">{DOWNLOADABLE_SWITCH}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Switch
+                      type="checkbox"
+                      name="downloadable"
+                      checked={lesson.downloadable}
+                      onChange={onLessonDetailsChange}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Switch
-                    type="checkbox"
-                    name="downloadable"
-                    checked={lesson.downloadable}
-                    onChange={onLessonDetailsChange}
-                  />
-                </Grid>
-              </Grid>
-            )}
+              )}
             <Grid
               container
               justify="space-between"

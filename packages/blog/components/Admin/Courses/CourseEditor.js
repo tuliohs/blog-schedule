@@ -209,7 +209,7 @@ const CourseEditor = (props) => {
       `;
     }
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
@@ -267,7 +267,7 @@ const CourseEditor = (props) => {
     try {
       props.dispatch(networkAction(true));
       const response = await queryGraphQL(
-        `${props.address.backend}/graph`,
+        `${props?.address?.backend}/graph` || 'localhost:8080',
         query,
         props.auth.token
       );
@@ -323,7 +323,7 @@ const CourseEditor = (props) => {
     }
     `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)

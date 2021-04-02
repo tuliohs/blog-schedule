@@ -12,7 +12,7 @@ const Img = (props) => {
     alt,
     defaultImage,
     address = {
-      backend: "",
+      backend: "localhost:8000",
       frontend: "",
       domain: "",
     },
@@ -24,7 +24,7 @@ const Img = (props) => {
     ? isExternal
       ? src
       : formulateMediaUrl(address.backend, src, isThumbnail)
-    : defaultImage || "vercel.svg";
+    : defaultImage || "6065dde6d5f9071a90a73a6c";
 
   return (
     <>

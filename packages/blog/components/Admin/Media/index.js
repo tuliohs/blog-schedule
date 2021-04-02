@@ -39,7 +39,7 @@ const Index = (props) => {
     }
     `;
     const fetch = new FetchBuilder()
-      .setUrl(`${props.address.backend}/graph`)
+      .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
       .setPayload(query)
       .setIsGraphQLEndpoint(true)
       .setAuthToken(props.auth.token)
@@ -52,8 +52,8 @@ const Index = (props) => {
         const filteredMedia =
           props.mimeTypesToShow && props.mimeTypesToShow.length
             ? response.media.filter((item) =>
-                props.mimeTypesToShow.includes(item.mimeType)
-              )
+              props.mimeTypesToShow.includes(item.mimeType)
+            )
             : response.media;
         setCreatorMedia([...creatorMedia, ...filteredMedia]);
         setMediaPaginationOffset(mediaPaginationOffset + 1);

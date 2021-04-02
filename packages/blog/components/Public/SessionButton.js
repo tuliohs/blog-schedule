@@ -44,11 +44,6 @@ function SessionButton(props) {
 //  auth: authProps,
 //  profile: profileProps,
 //};
-
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  profile: state.profile,
-});
-
+//const mapStateToProps = (state) => ({ auth: state.auth, profile: state.profile, });
 //export default connect(mapStateToProps)(SessionButton);
 export default SessionButton

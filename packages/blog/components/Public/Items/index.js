@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 //import { connect } from "react-redux";
 //import { networkAction } from "../../../redux/actions";
 import FetchBuilder from "../../../lib/fetch";
 import { Grid, Button } from "@material-ui/core";
 import { BTN_LOAD_MORE } from "../../../config/strings";
 import Post from "./Post";
-import { addressProps, publicCourse } from "../../../types";
+//import { addressProps, publicCourse } from "../../../types";
 import Course from "./Course";
 import { makeStyles } from "@material-ui/styles";
 
@@ -36,9 +36,10 @@ const List = (props) => {
 
   const getPosts = async () => {
     try {
+      //verify what is it
       //props.dispatch && props.dispatch(networkAction(true));
       const fetch = new FetchBuilder()
-        .setUrl(`${props.address.backend}/graph`)
+        .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
         .setPayload(generateQuery(offset))
         .setIsGraphQLEndpoint(true)
         .build();
@@ -57,7 +58,7 @@ const List = (props) => {
 
   return courses.length > 0 ? (
     <>
-      {/*<Grid item container xs={12} justify="space-between">
+      <Grid item container xs={12} justify="space-between">
         {courses.map((x, index) =>
           posts ? <Post key={index} {...x} /> : <Course key={index} {...x} />
         )}
@@ -73,7 +74,7 @@ const List = (props) => {
             {BTN_LOAD_MORE}
           </Button>
         </Grid>
-      )}*/}
+      )}
     </>
   ) : (
     <></>
@@ -88,14 +89,7 @@ const List = (props) => {
 //  posts: PropTypes.bool,
 //  address: addressProps,
 //};
-
-const mapStateToProps = (state) => ({
-  address: state.address,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatch: dispatch,
-});
-
+//const mapStateToProps = (state) => ({address: state.address,})
+//const mapDispatchToProps = (dispatch) => ({  dispatch: dispatch,});
 //export default connect(mapStateToProps, mapDispatchToProps)(List);
 export default List

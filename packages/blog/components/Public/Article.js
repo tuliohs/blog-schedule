@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
 import { formulateMediaUrl, formattedLocaleDate } from "../../lib/utils";
 import { publicCourse, profileProps, addressProps } from "../../types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   PriceTag,
   RichText as TextEditor,
@@ -66,14 +66,14 @@ const Article = (props) => {
   const { course, options, profile, address } = props;
   const classes = useStyles({
     featuredImage: course.featuredImage,
-    backendUrl: address.backend,
+    backendUrl: address?.frontend || 'localhost:8080',
   })();
   let courseDescriptionHydrated;
   try {
     courseDescriptionHydrated = TextEditor.hydrate({
       data: course.description,
     });
-  } catch (err) {}
+  } catch (err) { }
 
   return (
     <article>
@@ -138,9 +138,6 @@ Article.propTypes = {
   address: addressProps,
 };
 
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  address: state.address,
-});
-
-export default connect(mapStateToProps)(Article);
+//const mapStateToProps = (state) => ({profile: state.profile,address: state.address,})
+//export default connect(mapStateToProps)(Article);
+export default Article
