@@ -16,7 +16,7 @@ coverage
 .vscode
 
 # Env file
-#*.env
+*.env
 
 # report files
 report*.json
@@ -26,3 +26,7 @@ report*.json
 
 packages/api/local_directory_to_hold_user_data/uploads
 packages/api/local_directory_to_hold_user_data/thumbs
+
+packages/app/*
+#packages/app/node_modules/*
+!packages/app/.next

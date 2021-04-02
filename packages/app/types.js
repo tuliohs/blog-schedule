@@ -8,6 +8,7 @@ export const authProps = PropTypes.shape({
   token: PropTypes.string,
 });
 
+
 export const profileProps = PropTypes.shape({
   isCreator: PropTypes.bool,
   name: PropTypes.string,

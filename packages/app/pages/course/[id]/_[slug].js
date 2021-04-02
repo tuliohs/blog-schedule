@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Head from "next/head";
+
 import {
   formulateCourseUrl,
   formulateMediaUrl,
