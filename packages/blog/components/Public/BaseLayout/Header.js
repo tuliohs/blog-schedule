@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Link from "next/link";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import SessionButton from "../SessionButton";
 import { siteInfoProps } from "../../../types";
 import { makeStyles } from "@material-ui/styles";
 import dynamic from "next/dynamic";
+import MyContext from "../../../context/MyContext";
 
 const Img = dynamic(() => import("../../Img.js"));
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-
+  const { siteInfo } = useContext(MyContext)
   return (
     <Grid container justify="space-between" direction="row" alignItems="center">
       <Grid item>
@@ -36,18 +37,18 @@ const Header = (props) => {
               <a className={classes.logo}>
                 <div className={classes.logocontainer}>
                   <Img
-                    src={props.siteinfo.logopath}
+                    src={siteInfo.logopath}
                     isThumbnail={true}
                     classes={classes.logoimg}
                     alt="logo"
-                    defaultImage="/courselit_backdrop_square.webp"
+                    defaultImage="/vercel.svg"
                   />
                 </div>
               </a>
             </Link>
           </Grid>
           <Grid item>
-            <Typography variant="h5">{props.siteinfo.title}</Typography>
+            <Typography variant="h5">{siteInfo.title}</Typography>
           </Grid>
         </Grid>
       </Grid>
@@ -66,4 +67,5 @@ const mapStateToProps = (state) => ({
   siteinfo: state.siteinfo,
 });
 
-export default connect(mapStateToProps)(Header);
+//export default connect(mapStateToProps)(Header);
+export default Header

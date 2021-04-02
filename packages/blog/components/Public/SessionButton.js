@@ -3,16 +3,17 @@
  * is logged in or is a guest.
  */
 
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   GENERIC_SIGNOUT_TEXT,
   GENERIC_SIGNIN_TEXT,
 } from "../../config/strings.js";
-import { authProps, profileProps } from "../../types.js";
+//import { authProps, profileProps } from "../../types.js";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import MyContext from "../../context/MyContext.js";
 
 const useStyles = makeStyles({
   button: {
@@ -22,10 +23,11 @@ const useStyles = makeStyles({
 
 function SessionButton(props) {
   const classes = useStyles();
+  const { authProp } = useContext(MyContext)
 
   return (
     <>
-      {props.auth.guest ? (
+      {authProp.guest ? (
         <Link href="/login">
           <Button className={classes.button}>{GENERIC_SIGNIN_TEXT}</Button>
         </Link>
@@ -38,14 +40,15 @@ function SessionButton(props) {
   );
 }
 
-SessionButton.propTypes = {
-  auth: authProps,
-  profile: profileProps,
-};
+//SessionButton.propTypes = {
+//  auth: authProps,
+//  profile: profileProps,
+//};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
 });
 
-export default connect(mapStateToProps)(SessionButton);
+//export default connect(mapStateToProps)(SessionButton);
+export default SessionButton

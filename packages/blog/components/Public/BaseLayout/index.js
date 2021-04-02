@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 //import { connect } from "react-redux";
 import Head from "next/head";
 import { formulateMediaUrl } from "../../../lib/utils.js";
-import { addressProps, siteInfoProps } from "../../../types.js";
+//import { addressProps, siteInfoProps } from "../../../types.js";
 import Template from "./Template.js";
 import Scaffold from "./Scaffold";
+import MyContext from "../../../context/MyContext.js";
 
-const MasterLayout = (props) => {
+//type Props = {
+//  children?: ReactNode;
+//  title?: string;
+//  followLinks?: boolean;
+//  descript?: string;
+//};
+
+const MasterLayout = ({ children, title, props }) => {
+  const { siteInfo } = useContext(MyContext)
   return (
     <>
       <Head>
         <title>
-          {props?.title} | {props?.siteInfo?.title}
+          {title} | {siteInfo?.title}
         </title>
-        {props?.siteInfo?.logopath && (
+        {siteInfo?.logopath && (
           <link
             rel="icon"
             href={formulateMediaUrl(
               props?.address.backend,
-              props?.siteInfo?.logopath,
+              siteInfo?.logopath,
               true
             )}
           />
@@ -27,10 +36,10 @@ const MasterLayout = (props) => {
         <link
           rel="icon"
           href={
-            props?.siteInfo?.logopath
+            siteInfo?.logopath
               ? formulateMediaUrl(
                 props?.address.backend,
-                props?.siteInfo?.logopath,
+                siteInfo?.logopath,
                 true
               )
               : "/courselit_backdrop_square.webp"
@@ -41,21 +50,21 @@ const MasterLayout = (props) => {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
         />
       </Head>
-      <Scaffold>
-        <Template>{props?.children}</Template>
+      <Scaffold  >
+        <Template>{children}</Template>
       </Scaffold>
     </>
   );
 };
 
-MasterLayout.propTypes = {
-  children: PropTypes.object,
-  networkAction: PropTypes.bool,
-  siteInfo: siteInfoProps?.isRequired,
-  title: PropTypes.string.isRequired,
-  layout: PropTypes.object.isRequired,
-  address: addressProps,
-};
+//MasterLayout.propTypes = {
+//  children: PropTypes.object,
+//  networkAction: PropTypes.bool,
+//  siteInfo: siteInfoProps?.isRequired,
+//  title: PropTypes.string.isRequired,
+//  layout: PropTypes.object.isRequired,
+//  address: addressProps,
+//};
 
 const mapStateToProps = (state) => ({
   networkAction: state.networkAction,

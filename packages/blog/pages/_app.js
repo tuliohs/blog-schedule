@@ -21,37 +21,41 @@ import { CONSOLE_MESSAGE_THEME_INVALID } from "../config/strings.js";
 //import "@courselit/rich-text/dist/main.css";
 import dynamic from "next/dynamic";
 
-//const CodeInjector = dynamic(() =>
-//  import("../components/Public/CodeInjector.js")
-//);
+const CodeInjector = dynamic(() =>
+  import("../components/Public/CodeInjector.js")
+);
 
 
+import { getBackendAddress } from "../lib/utils.js";
 
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 import MyContext from '../context/MyContext';
 
-const muiTheme = createMuiTheme({
+const muiTheme = responsiveFontSizes(createMuiTheme({
   palette: {
-    primary: {
-      main: purple[500],
-    },
+    primary: { main: '#2A3F54' },
     secondary: {
-      main: green[500],
+      main: '#ec4d37',
+      dark: '#eee'
     },
+    error: { main: '#ff1744' },
+    background: { default: '#f5f5f5' },
+    contrastThreshold: 3
   },
-});
+  overrides: { drawerWidth: 240 }
+}
+))
 
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = useState({});
+  const [theme, setTheme] = useState(muiTheme);
   const [address, setAddress] = useState({});
   const [siteInfo, setSiteInfo] = useState({
-    title: "a",
-    subtitle: "f",
-    logopath: "f",
+    title: "Forgetion",
+    subtitle: "Learning Bases in Not Forgetion",
+    logopath: "/vercel.svg",
     currencyUnit: "d",
     currencyISOCode: "a",
-
   })
 
   const [profile, setProfile] = useState({
@@ -60,10 +64,21 @@ function MyApp({ Component, pageProps }) {
     id: "",
     fetched: false,
     email: "",
-    purchases: [""],
+    //purchases: [""],
 
   })
 
+  const [authProp, setAuthProp] = useState({
+    guest: false,
+    token: ""
+  });
+
+  const [navigation, setNavigation] = useState([{
+    text: "Home",
+    destination: "/",
+    category: "main",
+    newTab: false
+  }])
 
   //const muiTheme = responsiveFontSizes(theme);
   //const { theme, address } = store.getState();
@@ -106,16 +121,51 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <MyContext.Provider value={{ siteInfo, profile }}>
-        <ThemeProvider theme={muiTheme}>
+      <MyContext.Provider value={{ siteInfo, profile, authProp, navigation }}>
+        <ThemeProvider theme={theme}>
           <Component {...pageProps} />
-          {/*<CodeInjector />*/}
+          <CodeInjector />
         </ThemeProvider>
       </MyContext.Provider>
     </>
   )
 }
 
+async function updateSiteTheme(backend) {
+  let tema;
+  try {
+    //dispatch(networkAction(true));
+    const query = `
+      { 
+        theme: getTheme {
+          styles
+        }
+      }
+      `;
+    const fetch = new FetchBuilder()
+      .setUrl(`${backend}/graph`)
+      .setPayload(query)
+      .setIsGraphQLEndpoint(true)
+      .build();
+    const response = await fetch.exec();
+    tema = response
+  } catch (e) {
+    console.log(e, 'erro fetch')
+  }
+}
+
+//export const getStaticProps  = async () => {
+//export async function getServerSideProps
+export const getServerSideProps = async (context) => {
+  console.log('12a')
+
+  const { req } = context;
+  const courses = await updateSiteTheme(getBackendAddress(
+    req?.headers?.host || 'localhost:8000'
+  ));
+  console.log(courses, 'courses')
+  return { props: { courses } };
+}
 
 //MyApp.getInitialProps = async (appContext) => {
 //  const { ctx } = appContext;

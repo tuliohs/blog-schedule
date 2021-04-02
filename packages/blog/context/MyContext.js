@@ -2,7 +2,15 @@ import React, { createContext } from 'react'
 
 export var MyContext = createContext({
     siteInfo: {},
-    profile: {}
+    profile: {
+        isCreator: false,
+        name: "",
+        id: "",
+        fetched: false,
+        email: "",
+    },
+    authProp: {},
+    navigation: {}
 
 })
 export default MyContext

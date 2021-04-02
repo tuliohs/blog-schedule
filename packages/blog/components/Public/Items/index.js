@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 //import { networkAction } from "../../../redux/actions";
 import FetchBuilder from "../../../lib/fetch";
 import { Grid, Button } from "@material-ui/core";
@@ -57,7 +57,7 @@ const List = (props) => {
 
   return courses.length > 0 ? (
     <>
-      <Grid item container xs={12} justify="space-between">
+      {/*<Grid item container xs={12} justify="space-between">
         {courses.map((x, index) =>
           posts ? <Post key={index} {...x} /> : <Course key={index} {...x} />
         )}
@@ -73,21 +73,21 @@ const List = (props) => {
             {BTN_LOAD_MORE}
           </Button>
         </Grid>
-      )}
+      )}*/}
     </>
   ) : (
     <></>
   );
 };
 
-List.propTypes = {
-  generateQuery: PropTypes.func.isRequired,
-  initialItems: PropTypes.arrayOf(publicCourse),
-  showLoadMoreButton: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
-  posts: PropTypes.bool,
-  address: addressProps,
-};
+//List.propTypes = {
+//  generateQuery: PropTypes.func.isRequired,
+//  initialItems: PropTypes.arrayOf(publicCourse),
+//  showLoadMoreButton: PropTypes.bool,
+//  dispatch: PropTypes.func.isRequired,
+//  posts: PropTypes.bool,
+//  address: addressProps,
+//};
 
 const mapStateToProps = (state) => ({
   address: state.address,
@@ -97,4 +97,5 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+//export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List

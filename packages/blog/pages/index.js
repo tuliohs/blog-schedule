@@ -59,7 +59,6 @@ const generateQuery = (pageOffset = 1) => `
 const Index = (props) => {
   const classes = useStyles();
   const { siteInfo } = useContext(MyContext)
-
   return (
     <>
       <BaseLayout title={siteInfo.subtitle}>
@@ -116,15 +115,8 @@ const getCourses = async (backend) => {
 export async function getServerSideProps(context) {
   const { req } = context;
   const courses = await getCourses(getBackendAddress(req.headers.host));
-  const siteinfo = {
-    title: "a",
-    subtitle: "f",
-    logopath: "f",
-    currencyUnit: "d",
-    currencyISOCode: "a",
 
-  }
-  return { props: { courses, siteinfo } };
+  return { props: { courses } };
 }
 
 //Index.propTypes = {

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { formulateMediaUrl } from "../lib/utils.js";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps } from "../types.js";
 
 const Img = (props) => {
@@ -11,15 +11,20 @@ const Img = (props) => {
     classes,
     alt,
     defaultImage,
-    address,
+    address = {
+      backend: "",
+      frontend: "",
+      domain: "",
+    },
     isExternal = false,
   } = props;
+
 
   const source = src
     ? isExternal
       ? src
       : formulateMediaUrl(address.backend, src, isThumbnail)
-    : defaultImage || "/courselit_backdrop.webp";
+    : defaultImage || "vercel.svg";
 
   return (
     <>
@@ -48,4 +53,5 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Img);
+//export default connect(mapStateToProps)(Img);
+export default Img

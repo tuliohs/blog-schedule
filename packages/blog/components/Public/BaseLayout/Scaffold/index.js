@@ -9,10 +9,10 @@ import List from "@material-ui/core/List";
 import { Menu } from "@material-ui/icons";
 import { Grid, LinearProgress, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import AppToast from "../../../AppToast.js";
 //import { connect } from "react-redux";
-import { siteInfoProps, link, profileProps } from "../../../../types.js";
+//import { siteInfoProps, link, profileProps } from "../../../../types.js";
 import Header from "../Header.js";
 import {
   MAIN_MENU_ITEM_DASHBOARD,
@@ -21,6 +21,8 @@ import {
 import { NAVIGATION_CATEGORY_MAIN } from "../../../../config/constants.js";
 import MenuItem from "./MenuItem.js";
 import MyContext from "../../../../context/MyContext.js";
+
+//import Template from "../Template.js";
 
 const drawerWidth = 240;
 
@@ -63,11 +65,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Scaffold = (props) => {
-  const classes = useStyles(props);
-  const theme = useTheme();
-  const { siteInfo, profile } = useContext(MyContext)
+const Scaffold = ({ children, props }) => {
 
+  const classes = useStyles();//= useStyles(props);
+  const theme = useTheme();
+  const { siteInfo, profile, navigation } = useContext(MyContext)
+  console.log(children, 'propsf')
   const [mobileOpen, setMobileOpen] = useState(false);
 
   function handleDrawerToggle() {
@@ -85,14 +88,14 @@ const Scaffold = (props) => {
       <List>
         {profile.fetched && (
           <>
-            {profile.id && (
+            {props.profile.id && (
               <>
                 <MenuItem
                   link={{
                     text: MAIN_MENU_ITEM_PROFILE,
-                    destination: `/profile/${profile.userId && profile.userId !== -1
-                      ? profile.userId
-                      : profile.id
+                    destination: `/profile/${props.profile.userId && props.profile.userId !== -1
+                      ? props.profile.userId
+                      : props.profile.id
                       }`,
                     category: NAVIGATION_CATEGORY_MAIN,
                     newTab: false,
@@ -101,7 +104,7 @@ const Scaffold = (props) => {
                 <Divider />
               </>
             )}
-            {(profile.isAdmin || profile.isCreator) && (
+            {(props.profile.isAdmin || props.profile.isCreator) && (
               <MenuItem
                 link={{
                   text: MAIN_MENU_ITEM_DASHBOARD,
@@ -113,8 +116,8 @@ const Scaffold = (props) => {
             )}
           </>
         )}
-        {props.navigation &&
-          props.navigation.map((link) =>
+        {navigation &&
+          navigation.map((link) =>
             forMobile ? (
               <MenuItem
                 link={link}
@@ -175,32 +178,32 @@ const Scaffold = (props) => {
             {makeDrawer()}
           </Drawer>
         </Hidden>
-      </nav>
-
+      </nav >
+      <a>scafoolf</a>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <LinearProgress className={classes.showProgressBar} />
-        {props.children}
+        {children}
       </main>
       <AppToast />
-    </div>
+    </div >
   );
 };
 
-Scaffold.propTypes = {
-  children: PropTypes.object,
-  siteinfo: siteInfoProps,
-  navigation: PropTypes.arrayOf(link),
-  networkAction: PropTypes.bool.isRequired,
-  profile: profileProps,
-};
+//Scaffold.propTypes = {
+//  children: PropTypes.object,
+//siteinfo: siteInfoProps,
+//navigation: PropTypes.arrayOf(link),
+//networkAction: PropTypes.bool.isRequired,
+//profile: profileProps,
+//};
 
-const mapStateToProps = (state) => ({
-  siteinfo: state.siteinfo,
-  navigation: state.navigation.filter((link) => link.category === "main"),
-  networkAction: state.networkAction,
-  profile: state.profile,
-});
+//const mapStateToProps = (state) => ({
+//  siteinfo: state.siteinfo,
+//  navigation: state.navigation.filter((link) => link.category === "main"),
+//  networkAction: state.networkAction,
+//  profile: state.profile,
+//});
 
 //export default connect(mapStateToProps)(Scaffold);
 export default Scaffold

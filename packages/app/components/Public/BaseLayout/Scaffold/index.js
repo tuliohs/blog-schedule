@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Scaffold = (props) => {
+  console.log('props to scaffod style', props, 'props to scaffod style')
   const classes = useStyles(props);
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -87,11 +88,10 @@ const Scaffold = (props) => {
                 <MenuItem
                   link={{
                     text: MAIN_MENU_ITEM_PROFILE,
-                    destination: `/profile/${
-                      props.profile.userId && props.profile.userId !== -1
+                    destination: `/profile/${props.profile.userId && props.profile.userId !== -1
                         ? props.profile.userId
                         : props.profile.id
-                    }`,
+                      }`,
                     category: NAVIGATION_CATEGORY_MAIN,
                     newTab: false,
                   }}

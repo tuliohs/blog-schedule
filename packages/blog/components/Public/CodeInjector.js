@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
+//import { connect } from "react-redux";
 class CodeInjector extends React.Component {
   componentDidMount() {
     const targetTagsForInjection = ["head"];
@@ -12,7 +11,7 @@ class CodeInjector extends React.Component {
 
   injectCodeIn(targetHTMLTag) {
     const tempContainer = document.createElement("div");
-    tempContainer.innerHTML = this.props.codeForHead;
+    //tempContainer.innerHTML = this.props.codeForHead;
     const children = tempContainer.children;
     for (let i = 0; i < children.length; i++) {
       let elem = children[i];
@@ -47,4 +46,5 @@ const mapStateToProps = (state) => ({
   codeForHead: state.siteinfo.codeInjectionHead,
 });
 
-export default connect(mapStateToProps)(CodeInjector);
+//export default connect(mapStateToProps)(CodeInjector);
+export default CodeInjector
