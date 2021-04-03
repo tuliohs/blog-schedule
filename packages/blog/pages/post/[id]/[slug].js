@@ -79,7 +79,6 @@ const generateQuery = (pageOffset = 1) => `
   }
 `;
 const getCourses = async (backend = 'http://localhost:8000') => {
-  console.log(backend, 'backendbackend')
   let courses = [];
   try {
     const fetch = new FetchBuilder()

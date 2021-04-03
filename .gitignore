@@ -16,7 +16,7 @@ coverage
 .vscode
 
 # Env file
-*.env
+#*.env
 
 # report files
 report*.json
