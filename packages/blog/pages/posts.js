@@ -6,6 +6,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { getBackendAddress } from "../lib/utils.js";
 import dynamic from "next/dynamic";
+import defaultState from '../config/defaultState'
 
 const BaseLayout = dynamic(() => import("../components/Public/BaseLayout"));
 const Items = dynamic(() => import("../components/Public/Items"));
@@ -67,6 +68,7 @@ function Posts(props) {
 }
 
 const getCourses = async (backend) => {
+  console.log(backend, 'backendbackend')
   let courses = [];
   try {
     const fetch = new FetchBuilder()
@@ -80,8 +82,12 @@ const getCourses = async (backend) => {
   return courses;
 };
 
-export async function getServerSideProps({ req }) {
-  const courses = await getCourses(getBackendAddress(req.headers.host));
+
+export async function getStaticProps() {
+  //export async function getServerSideProps(context) {
+  //const { req } = context;
+  //const courses = await getCourses(getBackendAddress(req.headers.host));
+  const courses = await getCourses(defaultState.address.backend);
   return { props: { courses } };
 }
 

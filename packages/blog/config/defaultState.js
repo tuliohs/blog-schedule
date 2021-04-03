@@ -56,7 +56,7 @@ export default {
   },
   navigation: [],
   address: {
-    backend: "",
+    backend: "http://localhost:8000",
     frontend: "",
     domain: "",
   },

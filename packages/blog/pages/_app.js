@@ -124,41 +124,41 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-async function updateSiteTheme(backend) {
-  let tema;
-  try {
-    //dispatch(networkAction(true));
-    const query = `
-      { 
-        theme: getTheme {
-          styles
-        }
-      }
-      `;
-    const fetch = new FetchBuilder()
-      .setUrl(`${backend}/graph`)
-      .setPayload(query)
-      .setIsGraphQLEndpoint(true)
-      .build();
-    const response = await fetch.exec();
-    tema = response
+//async function updateSiteTheme(backend) {
+//  let tema;
+//  try {
+//    //dispatch(networkAction(true));
+//    const query = `
+//      { 
+//        theme: getTheme {
+//          styles
+//        }
+//      }
+//      `;
+//    const fetch = new FetchBuilder()
+//      .setUrl(`${backend}/graph`)
+//      .setPayload(query)
+//      .setIsGraphQLEndpoint(true)
+//      .build();
+//    const response = await fetch.exec();
+//    tema = response
 
-  } catch (e) {
-    console.log(e, 'erro fetch')
-  }
-  return tema
-}
+//  } catch (e) {
+//    console.log(e, 'erro fetch')
+//  }
+//  return tema
+//}
 
 //export const getStaticProps  = async () => {
 //export async function getServerSideProps
-export const getServerSideProps = async (context) => {
+//export const getServerSideProps = async (context) => {
 
-  const { req } = context;
-  const courses = await updateSiteTheme(getBackendAddress(
-    req?.headers?.host || 'localhost:8000'
-  ));
-  return { props: { courses } };
-}
+//  const { req } = context;
+//  const courses = await updateSiteTheme(getBackendAddress(
+//    req?.headers?.host || 'localhost:8000'
+//  ));
+//  return { props: { courses } };
+//}
 
 //MyApp.getInitialProps = async (appContext) => {
 //  const { ctx } = appContext;

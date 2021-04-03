@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
   },
-}));
+}))
 
 const Post = (props) => {
   const classes = useStyles();
@@ -29,14 +29,14 @@ const Post = (props) => {
   };
 
   return (
-    <BaseLayout title={props.post.title}>
+    <BaseLayout title={props.post?.title}>
       {props.post && (
         <Grid item xs={12} className={classes.content}>
           <Head>
             <meta
               property="og:url"
               content={formulateCourseUrl(props.post,
-                props?.address?.frontend || 'localhost:8080'
+                props?.address?.frontend || 'localhost:8000'
               )}
             />
             <meta property="og:type" content="article" />
@@ -51,7 +51,7 @@ const Post = (props) => {
               <meta
                 property="og:image"
                 content={formulateMediaUrl(
-                  props?.address?.frontend || 'localhost:8080',
+                  props?.address?.frontend || 'localhost:8000',
                   props.post.featuredImage
                 )}
               />
@@ -62,12 +62,49 @@ const Post = (props) => {
       )}
     </BaseLayout>
   );
+}
+
+const generateQuery = (pageOffset = 1) => `
+  query {
+    courses: getPosts(offset: ${pageOffset}) {
+      id,
+      title,
+      description,
+      updated,
+      creatorName,
+      slug,
+      featuredImage,
+      courseId
+    }
+  }
+`;
+const getCourses = async (backend = 'http://localhost:8000') => {
+  console.log(backend, 'backendbackend')
+  let courses = [];
+  try {
+    const fetch = new FetchBuilder()
+      .setUrl(`${backend}/graph`)
+      .setPayload(generateQuery())
+      .setIsGraphQLEndpoint(true)
+      .build();
+    const response = await fetch.exec();
+    courses = response.courses;
+  } catch (e) { }
+  return courses;
 };
 
-export async function getServerSideProps({ query, req }) {
+export const getStaticPaths = async () => {
+  const post = await getCourses()
+  return {
+    paths: post?.map(data => ({ params: { id: data?.courseId.toString(), slug: data?.slug } })),
+    fallback: true, //SE A PAGINA NÃO EXISTIR ENTÃO, GERAR NOVAMENTE
+  };
+};
+
+export async function getStaticProps({ params }) {
   const graphQuery = `
     query {
-      post: getCourse(courseId: ${query.id}) {
+      post: getCourse(courseId: ${params.id}) {
           id,
           title,
           description,
@@ -82,7 +119,8 @@ export async function getServerSideProps({ query, req }) {
     }
   `;
   const fetch = new FetchBuilder()
-    .setUrl(`${getBackendAddress(req.headers.host)}/graph`)
+    //.setUrl(`${getBackendAddress(req?.headers.host)}/graph`)
+    .setUrl(`${'http://localhost:8000'}/graph`)
     .setPayload(graphQuery)
     .setIsGraphQLEndpoint(true)
     .build();
@@ -96,13 +134,60 @@ export async function getServerSideProps({ query, req }) {
       title: err.message,
     };
   }
-
   return {
     props: {
       post,
     },
   };
 }
+
+
+
+//export async function getServerSideProps({ query, req }) {
+//  //export async function getStaticProps({ params }) {
+//  console.log('queryquery', query)
+//  console.log(`${getBackendAddress(req?.headers.host)}/graph`, 'howtst')
+//  const graphQuery = `
+//      query {
+//        post: getCourse(courseId: ${query.id}) {
+//            id,
+//            title,
+//            description,
+//            featuredImage,
+//            updated,
+//            creatorName,
+//            creatorId,
+//            slug,
+//            isBlog,
+//            courseId,
+//        }
+//      }
+//    `;
+//  const fetch = new FetchBuilder()
+//    .setUrl(`${getBackendAddress(req?.headers.host)}/graph`)
+//    //.setUrl(`${'localhost:3002'}/graph`)
+//    .setPayload(graphQuery)
+//    .setIsGraphQLEndpoint(true)
+//    .build();
+
+//  let post = null;
+//  try {
+//    const response = await fetch.exec();
+//    post = response.post;
+//  } catch (err) {
+//    post = {
+//      title: err.message,
+//    };
+//  }
+
+//  return {
+//    props: {
+//      post,
+//    },
+//  };
+//}
+
+
 
 //Post.propTypes = {
 //  siteInfo: siteInfoProps,

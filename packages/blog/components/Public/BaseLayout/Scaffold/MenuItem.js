@@ -25,7 +25,7 @@ const MenuItem = (props) => {
       target="_blank"
       rel="noreferrer noopener"
       className={classes.externalLink}
-      onClick={props.closeDrawer ? props.closeDrawer : () => {}}
+      onClick={props.closeDrawer ? props.closeDrawer : () => { }}
     >
       <ListItem button>
         <ListItemText primary={link.text}></ListItemText>
@@ -41,7 +41,7 @@ const MenuItem = (props) => {
       <ListItem
         button
         component="a"
-        onClick={props.closeDrawer ? props.closeDrawer : () => {}}
+        onClick={props.closeDrawer ? props.closeDrawer : () => { }}
       >
         <ListItemText primary={link.text}></ListItemText>
       </ListItem>
@@ -49,9 +49,9 @@ const MenuItem = (props) => {
   );
 };
 
-MenuItem.propTypes = {
-  link: link,
-  closeDrawer: PropTypes.func,
-};
+//MenuItem.propTypes = {
+//  link: link,
+//  closeDrawer: PropTypes.func,
+//};
 
 export default MenuItem;

@@ -1,6 +1,7 @@
 //import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { publicCourse, siteInfoProps } from "../types.js";
+//import PropTypes from "prop-types";
+//import { publicCourse, siteInfoProps } from "../types.js";
+import defaultState from '../config/defaultState'
 import { HEADER_BLOG_POSTS_SECTION, BTN_VIEW_ALL } from "../config/strings.js";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
@@ -112,10 +113,11 @@ const getCourses = async (backend) => {
   return courses;
 };
 
-export async function getServerSideProps(context) {
-  const { req } = context;
-  const courses = await getCourses(getBackendAddress(req.headers.host));
-
+export async function getStaticProps() {
+  //export async function getServerSideProps(context) {
+  //const { req } = context;
+  //const courses = await getCourses(getBackendAddress(req.headers.host));
+  const courses = await getCourses(defaultState.address.backend);
   return { props: { courses } };
 }
 
