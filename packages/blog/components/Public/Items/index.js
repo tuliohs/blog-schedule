@@ -9,6 +9,8 @@ import Post from "./Post";
 //import { addressProps, publicCourse } from "../../../types";
 import Course from "./Course";
 import { makeStyles } from "@material-ui/styles";
+import defaultState from '../../../config/defaultState'
+
 
 const useStyles = makeStyles((theme) => ({
   loadMoreBtn: {
@@ -18,32 +20,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const List = (props) => {
-  const [courses, setCourses] = useState(props.initialItems || []);
+const List = ({ showLoadMoreButton = true, initialItems,
+  generateQuery, posts = true }) => {
+  const [courses, setCourses] = useState(initialItems || []);
   const [offset, setOffset] = useState(2);
   const [shouldShowLoadMoreButton, setShouldShowLoadMoreButton] = useState(
-    typeof props.showLoadMoreButton === "boolean"
-      ? props.showLoadMoreButton
+    typeof showLoadMoreButton === "boolean"
+      ? showLoadMoreButton
       : false
   );
-  const { generateQuery } = props;
-  const posts = typeof props.posts === "boolean" ? props.posts : false;
+
   const classes = useStyles();
 
   useEffect(() => {
-    getPosts();
+    getPosts(defaultState.address.backend);
   }, [offset]);
 
-  const getPosts = async () => {
+  const getPosts = async (backend) => {
     try {
       //verify what is it
       //props.dispatch && props.dispatch(networkAction(true));
       const fetch = new FetchBuilder()
-        .setUrl(`${props?.address?.backend}/graph` || 'localhost:8080')
+        .setUrl(`${backend}/graph`)
         .setPayload(generateQuery(offset))
         .setIsGraphQLEndpoint(true)
         .build();
       const response = await fetch.exec();
+
       if (response.courses) {
         if (response.courses.length > 0) {
           setCourses([...courses, ...response.courses]);
@@ -52,18 +55,17 @@ const List = (props) => {
         }
       }
     } finally {
-      props.dispatch && props.dispatch(networkAction(false));
+      //props.dispatch && props.dispatch(networkAction(false));
     }
   };
-
   return courses.length > 0 ? (
     <>
       <Grid item container xs={12} justify="space-between">
         {courses.map((x, index) =>
-          posts ? <Post key={index} {...x} /> : <Course key={index} {...x} />
+          posts ? <Post key={index}  {...x} /> : <Course key={index} {...x} />
         )}
       </Grid>
-      {shouldShowLoadMoreButton && courses.length > 0 && (
+      {shouldShowLoadMoreButton && courses.length > -50 && (
         <Grid item xs={12}>
           <Button
             variant="contained"

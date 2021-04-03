@@ -7,7 +7,7 @@ import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Link from "next/link";
 import FetchBuilder from "../lib/fetch.js";
-import { getBackendAddress } from "../lib/utils.js";
+//import { getBackendAddress } from "../lib/utils.js";
 import dynamic from "next/dynamic";
 import { useContext } from "react";
 import MyContext from "../context/MyContext.js";
@@ -78,6 +78,7 @@ const Index = (props) => {
                   generateQuery={generateQuery}
                   initialItems={props.courses}
                   posts={true}
+                  showLoadMoreButton={true}
                 />
                 <Grid item xs={12}>
                   <Button
@@ -114,17 +115,8 @@ const getCourses = async (backend) => {
 };
 
 export async function getStaticProps() {
-  //export async function getServerSideProps(context) {
-  //const { req } = context;
-  //const courses = await getCourses(getBackendAddress(req.headers.host));
   const courses = await getCourses(defaultState.address.backend);
   return { props: { courses } };
 }
 
-//Index.propTypes = {
-//  courses: PropTypes.arrayOf(publicCourse),
-//  siteinfo: siteInfoProps,
-//}; 
-//const mapStateToProps = (state) => ({  siteinfo: state.siteinfo,});
-//export default connect(mapStateToProps)(Index);
 export default (Index);

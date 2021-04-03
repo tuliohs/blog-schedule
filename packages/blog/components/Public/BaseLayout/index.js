@@ -7,6 +7,7 @@ import { formulateMediaUrl } from "../../../lib/utils.js";
 import Template from "./Template.js";
 import Scaffold from "./Scaffold";
 import MyContext from "../../../context/MyContext.js";
+import defaultState from '../../../config/defaultState'
 
 //type Props = {
 //  children?: ReactNode;
@@ -27,7 +28,7 @@ const MasterLayout = ({ children, title, props }) => {
           <link
             rel="icon"
             href={formulateMediaUrl(
-              props?.address.backend,
+              defaultState.address.backend,
               siteInfo?.logopath,
               true
             )}
@@ -38,7 +39,7 @@ const MasterLayout = ({ children, title, props }) => {
           href={
             siteInfo?.logopath
               ? formulateMediaUrl(
-                props?.address.backend,
+                defaultState.address.backend,
                 siteInfo?.logopath,
                 true
               )

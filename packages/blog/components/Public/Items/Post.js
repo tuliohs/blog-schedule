@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 import Link from "next/link";
 import { URL_EXTENTION_POSTS } from "../../../config/constants.js";
 import { Grid, Typography } from "@material-ui/core";
@@ -70,15 +70,15 @@ const Post = (props) => {
   );
 };
 
-Post.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  updated: PropTypes.string.isRequired,
-  creatorName: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  featuredImage: PropTypes.string,
-  courseId: PropTypes.number.isRequired,
-};
+//Post.propTypes = {
+//  id: PropTypes.string.isRequired,
+//  title: PropTypes.string.isRequired,
+//  description: PropTypes.string.isRequired,
+//  updated: PropTypes.string.isRequired,
+//  creatorName: PropTypes.string.isRequired,
+//  slug: PropTypes.string.isRequired,
+//  featuredImage: PropTypes.string,
+//  courseId: PropTypes.number.isRequired,
+//};
 
 export default Post;

@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 const Template = ({ children, props }) => {
   const classes = useStyles()// useStyles(props);
   const router = useRouter();
-  console.log(router, 'router')
 
   return (
     <>

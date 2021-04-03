@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   const [siteInfo, setSiteInfo] = useState({
     title: "Forgetion",
     subtitle: "Learning Bases in Not Forgetion",
-    logopath: "6065dde6d5f9071a90a73a6c",
+    logopath: "6065e0fc891b6c2dcc9c6d74",
     currencyUnit: "d",
     currencyISOCode: "a",
   })

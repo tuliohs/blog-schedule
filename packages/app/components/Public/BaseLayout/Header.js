@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-
+  console.log('props.siteinfo', props.siteinfo, 'props.siteinfo')
   return (
     <Grid container justify="space-between" direction="row" alignItems="center">
       <Grid item>

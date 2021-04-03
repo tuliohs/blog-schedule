@@ -41,7 +41,7 @@ const Header = (props) => {
                     isThumbnail={true}
                     classes={classes.logoimg}
                     alt="logo"
-                    defaultImage="6065dde6d5f9071a90a73a6c"
+                    defaultImage="/courselit_backdrop_square"
                   />
                 </div>
               </a>

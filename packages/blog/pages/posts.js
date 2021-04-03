@@ -68,7 +68,6 @@ function Posts(props) {
 }
 
 const getCourses = async (backend) => {
-  console.log(backend, 'backendbackend')
   let courses = [];
   try {
     const fetch = new FetchBuilder()
@@ -81,7 +80,6 @@ const getCourses = async (backend) => {
   } catch (e) { }
   return courses;
 };
-
 
 export async function getStaticProps() {
   //export async function getServerSideProps(context) {
