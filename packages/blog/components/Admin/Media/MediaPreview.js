@@ -7,7 +7,7 @@ import {
   HEADER_MEDIA_PREVIEW,
   PREVIEW_PDF_FILE,
 } from "../../../config/strings";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps } from "../../../types";
 import dynamic from "next/dynamic";
 
@@ -38,8 +38,8 @@ const MediaPreview = (props) => {
         "video/mp4",
         "audio/mp3",
       ].includes(mimeType) && (
-        <Typography variant="subtitle1">{HEADER_MEDIA_PREVIEW}</Typography>
-      )}
+          <Typography variant="subtitle1">{HEADER_MEDIA_PREVIEW}</Typography>
+        )}
       {mimeType === "application/pdf" && (
         <a
           href={`${formulateMediaUrl(address.backend, id, false)}`}
@@ -52,10 +52,10 @@ const MediaPreview = (props) => {
       {(mimeType === "image/png" ||
         mimeType === "image/jpeg" ||
         mimeType === "image/webp") && (
-        <div className={classes.img}>
-          <Img src={id} />
-        </div>
-      )}
+          <div className={classes.img}>
+            <Img src={id} />
+          </div>
+        )}
       {mimeType === "video/mp4" && (
         <video controls controlsList="nodownload" className={classes.video}>
           <source
@@ -94,4 +94,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(MediaPreview);
+export default MediaPreview

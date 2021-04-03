@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import AppToast from "../../AppToast";
 import DrawerListItemIcon from "./DrawerListItemIcon.js";
 import Header from "./Header.js";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { siteInfoProps } from "../../../types";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
@@ -219,4 +219,4 @@ const mapStateToProps = (state) => ({
   siteinfo: state.siteinfo,
 });
 
-export default connect(mapStateToProps)(ComponentScaffold);
+export default (ComponentScaffold);

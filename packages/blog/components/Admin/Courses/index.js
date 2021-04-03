@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { GridListTileBar, Button } from "@material-ui/core";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   MANAGE_COURSES_PAGE_HEADING,
   NEW_COURSE_PAGE_HEADING,
@@ -120,4 +120,5 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Index);
+//export default (Index);
+export default Index

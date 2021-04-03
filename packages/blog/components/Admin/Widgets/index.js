@@ -3,7 +3,7 @@ import { OverviewAndDetail } from "@courselit/components-library";
 import { WIDGETS_PAGE_HEADER } from "../../../config/strings";
 import widgets from "../../../config/widgets";
 import { addressProps, profileProps } from "../../../types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { GridListTileBar } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import FetchBuilder from "../../../lib/fetch";
@@ -66,4 +66,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Widgets);
+export default Widgets

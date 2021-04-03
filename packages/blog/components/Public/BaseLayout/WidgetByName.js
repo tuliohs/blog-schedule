@@ -4,7 +4,7 @@ import widgets from "../../../config/widgets";
 import FetchBuilder from "../../../lib/fetch";
 import * as config from "../../../config/constants";
 import * as utilities from "../../../lib/utils";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps } from "../../../types";
 
 const WidgetByName = ({ name, section, address }) => {
@@ -38,4 +38,5 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(WidgetByName);
+//export default (WidgetByName);
+export default WidgetByName

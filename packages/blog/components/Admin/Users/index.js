@@ -9,7 +9,7 @@ import {
   SWITCH_IS_CREATOR,
 } from "../../../config/strings.js";
 import FetchBuilder from "../../../lib/fetch.js";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps, authProps } from "../../../types.js";
 import { networkAction } from "../../../redux/actions.js";
 import { OverviewAndDetail } from "@courselit/components-library";
@@ -126,8 +126,8 @@ const UsersManager = ({ auth, address, dispatch }) => {
             user.isAdmin
               ? SWITCH_IS_ADMIN
               : user.isCreator
-              ? SWITCH_IS_CREATOR
-              : ""
+                ? SWITCH_IS_CREATOR
+                : ""
           }
         />
       </>
@@ -158,4 +158,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersManager);
+export default (UsersManager);

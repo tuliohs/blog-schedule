@@ -1,4 +1,4 @@
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import {
   formulateMediaUrl,
   formulateCourseUrl,
@@ -9,6 +9,7 @@ import Head from "next/head";
 import FetchBuilder from "../../../lib/fetch.js";
 //import { addressProps, siteInfoProps } from "../../../types.js";
 import dynamic from "next/dynamic";
+import defaultState from "../../../config/defaultState.js";
 
 const BaseLayout = dynamic(() =>
   import("../../../components/Public/BaseLayout")
@@ -51,7 +52,7 @@ const Post = (props) => {
               <meta
                 property="og:image"
                 content={formulateMediaUrl(
-                  props?.address?.frontend || 'localhost:8000',
+                  props?.address?.frontend,
                   props.post.featuredImage
                 )}
               />
@@ -78,7 +79,7 @@ const generateQuery = (pageOffset = 1) => `
     }
   }
 `;
-const getCourses = async (backend = 'http://localhost:8000') => {
+const getCourses = async (backend = defaultState.address.backend) => {
   let courses = [];
   try {
     const fetch = new FetchBuilder()
@@ -119,7 +120,7 @@ export async function getStaticProps({ params }) {
   `;
   const fetch = new FetchBuilder()
     //.setUrl(`${getBackendAddress(req?.headers.host)}/graph`)
-    .setUrl(`${'http://localhost:8000'}/graph`)
+    .setUrl(`${defaultState.address.backend}/graph`)
     .setPayload(graphQuery)
     .setIsGraphQLEndpoint(true)
     .build();
@@ -133,14 +134,14 @@ export async function getStaticProps({ params }) {
       title: err.message,
     };
   }
+  const address = defaultState.address
   return {
     props: {
       post,
+      address
     },
   };
 }
-
-
 
 //export async function getServerSideProps({ query, req }) {
 //  //export async function getStaticProps({ params }) {
@@ -193,5 +194,5 @@ export async function getStaticProps({ params }) {
 //  address: addressProps,
 //};
 //const mapStateToProps = (state) => ({siteInfo: state.siteinfo,address: state.address,});
-//export default connect(mapStateToProps)(Post);
+//export default (Post);
 export default Post;

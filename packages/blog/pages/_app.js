@@ -42,9 +42,47 @@ const muiTheme = responsiveFontSizes(createMuiTheme({
 }
 ))
 
+export async function refreshUserProfile(userId) {
+  try {
+    //dispatch(networkAction(true));
+    const userID = userId  //|| getState().profile.email;
+
+    const query = `
+      { profile: getUser(email: "${userID}") {
+          name,
+          isCreator,
+          id,
+          isAdmin,
+          email,
+          purchases,
+          userId,
+          bio
+        }
+      }
+      `;
+    const fetch = new FetchBuilder()
+      .setUrl(`${defaultState.address.backend}/graph`)
+      .setPayload(query)
+      .setIsGraphQLEndpoint(true)
+      //.setAuthToken(defaultState.auth.token)
+      .build();
+    const response = await fetch.exec();
+    //dispatch(networkAction(false));
+    //dispatch(updateProfile(response.profile));
+
+    console.log('propf', response.profile)
+    return response.profile
+  }
+  // finally {dispatch(networkAction(false))    }
+  catch { return null }
+}
+
+export function signedIn(userid, token) {
+  return refreshUserProfile(userid)
+}
+
 function MyApp({ Component, pageProps }) {
   const [theme, setTheme] = useState(muiTheme);
-  const [address, setAddress] = useState({});
   const [siteInfo, setSiteInfo] = useState({
     title: "Forgetion",
     subtitle: "Learning Bases in Not Forgetion",
@@ -84,21 +122,19 @@ function MyApp({ Component, pageProps }) {
   //  muiTheme = responsiveFontSizes(createMuiTheme({}));
   //}
 
-  //const setUpCookies = () => {
-  //  const tokenCookie = getCookie({
-  //    key: JWT_COOKIE_NAME,
-  //    domain: address.domain,
-  //  });
-  //  if (tokenCookie) {
-  //    store.dispatch(
-  //      signedIn(
-  //        getCookie({ key: USERID_COOKIE_NAME, domain: address.domain }),
-  //        tokenCookie
-  //      )
-  //    );
-  //  }
-  //  store.dispatch(authHasBeenChecked());
-  //};
+  const setUpCookies = () => {
+    const tokenCookie = getCookie({
+      key: JWT_COOKIE_NAME,
+      domain: defaultState.address.domain,
+    });
+    if (tokenCookie) {
+      signedIn(
+        getCookie({ key: USERID_COOKIE_NAME, domain: defaultState.address.domain }),
+        tokenCookie
+      )
+    }
+    //store.dispatch(authHasBeenChecked());
+  };
 
   const removeServerSideInjectedCSS = () => {//???? its usable for more projects
     const jssStyles = document.querySelector("#jss-server-side");
@@ -108,7 +144,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    //setUpCookies();
+    setUpCookies();
     removeServerSideInjectedCSS();
   }, []);
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect /* useRef */ } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { authProps, profileProps, addressProps } from "../../../types.js";
 import {
   BTN_DELETE_COURSE,
@@ -601,4 +601,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseEditor);
+export default (CourseEditor);

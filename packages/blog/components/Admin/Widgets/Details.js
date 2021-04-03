@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FetchBuilder from "../../../lib/fetch";
 import { useTheme } from "@material-ui/styles";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps } from "../../../types";
 
 const Details = ({ name, component, address }) => {
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Details);
+export default Details

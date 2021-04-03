@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { GridListTileBar, Button } from "@material-ui/core";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   MEDIA_MANAGER_PAGE_HEADING,
   LOAD_MORE_TEXT,
@@ -120,4 +120,5 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Index);
+//export default (Index);
+export default Index

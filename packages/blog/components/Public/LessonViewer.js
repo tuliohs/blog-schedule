@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FetchBuilder from "../../lib/fetch";
 import { LESSON_TYPE_VIDEO, LESSON_TYPE_AUDIO } from "../../config/constants";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 //import { networkAction } from "../../redux/actions";
 import { Typography, Grid } from "@material-ui/core";
 import { ENROLL_IN_THE_COURSE, USER_ERROR_HEADER } from "../../config/strings";
@@ -165,4 +165,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LessonViewer);
+export default (LessonViewer);

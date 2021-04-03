@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import { Snackbar, IconButton, Button } from "@material-ui/core";
 //import { clearAppMessage } from "../redux/actions";
 import { appMessage } from "../types";
@@ -77,5 +77,5 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-//export default connect(mapStateToProps, mapDispatchToProps)(AppToast);
+//export default (AppToast);
 export default AppToast

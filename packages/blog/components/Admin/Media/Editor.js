@@ -18,7 +18,7 @@ import {
 import FetchBuilder from "../../../lib/fetch";
 import AppMessage from "../../../models/app-message";
 import { addressProps, authProps } from "../../../types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { networkAction, setAppMessage } from "../../../redux/actions";
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
@@ -177,4 +177,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default (Editor);

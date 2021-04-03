@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   PAYMENT_METHOD_PAYPAL,
   PAYMENT_METHOD_PAYTM,
@@ -41,4 +41,5 @@ const mapStateToProps = (state) => ({
   siteInfo: state.siteinfo,
 });
 
-export default connect(mapStateToProps)(CheckoutExternal);
+//export default (CheckoutExternal);
+export default CheckoutExternal

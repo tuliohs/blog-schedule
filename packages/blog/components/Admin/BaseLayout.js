@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import {
   LibraryBooks,
@@ -145,11 +145,11 @@ BaseLayoutAdmin.propTypes = {
   address: addressProps,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  profile: state.profile,
-  siteInfo: state.siteinfo,
-  address: state.address,
-});
+//const mapStateToProps = (state) => ({
+//  auth: state.auth,
+//  profile: state.profile,
+//  siteInfo: state.siteinfo,
+//  address: state.address,});
 
-export default connect(mapStateToProps)(BaseLayoutAdmin);
+//export default (BaseLayoutAdmin);
+export default BaseLayoutAdmin

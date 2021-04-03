@@ -44,7 +44,7 @@ import { makeStyles } from "@material-ui/styles";
 import { Add } from "@material-ui/icons";
 import AddComponentDialog from "./AddComponentDialog.js";
 import AddedComponent from "./AddedComponent.js";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import FetchBuilder from "../../../lib/fetch.js";
 import { THEMES_REPO } from "../../../config/constants.js";
 import {
@@ -692,4 +692,5 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(PageDesigner);
+export default PageDesigner
+//export default (PageDesigner);

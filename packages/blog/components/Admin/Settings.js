@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { siteInfoProps, authProps, addressProps } from "../../types";
 import {
   getGraphQLQueryFields,
@@ -423,4 +423,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default (Settings);

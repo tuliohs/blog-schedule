@@ -42,7 +42,7 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import FetchBuilder from "../../../lib/fetch";
 import { networkAction, setAppMessage } from "../../../redux/actions";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import AppMessage from "../../../models/app-message.js";
 import { Card, RichText as TextEditor } from "@courselit/components-library";
 import dynamic from "next/dynamic";
@@ -454,4 +454,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LessonEditor);
+export default (LessonEditor);

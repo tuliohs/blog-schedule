@@ -1,4 +1,4 @@
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import { publicCourse, siteInfoProps } from "../types.js";
 import defaultState from '../config/defaultState'

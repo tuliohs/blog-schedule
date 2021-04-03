@@ -11,7 +11,7 @@ import { Grid, LinearProgress, Toolbar, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 //import PropTypes from "prop-types";
 import AppToast from "../../../AppToast.js";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 //import { siteInfoProps, link, profileProps } from "../../../../types.js";
 import Header from "../Header.js";
 import {
@@ -204,5 +204,5 @@ const Scaffold = ({ children, props }) => {
 //  profile: state.profile,
 //});
 
-//export default connect(mapStateToProps)(Scaffold);
+//export default (Scaffold);
 export default Scaffold

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { addressProps, authProps, publicCourse } from "../../types";
 import { ENROLL_BUTTON_TEXT } from "../../config/strings";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 //import { networkAction, setAppMessage } from "../../redux/actions";
@@ -80,5 +80,5 @@ Free.propTypes = {
 
 //const mapStateToProps = (state) => ({auth: state.auth,address: state.address,})
 //const mapDispatchToProps = (dispatch) => ({dispatch: dispatch,});
-//export default connect(mapStateToProps, mapDispatchToProps)(Free);
+//export default (Free);
 export default Free

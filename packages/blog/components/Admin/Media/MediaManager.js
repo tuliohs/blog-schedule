@@ -1,5 +1,5 @@
 import React, { useState, createRef } from "react";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import fetch from "isomorphic-unfetch";
 import PropTypes from "prop-types";
 import {
@@ -194,4 +194,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MediaManager);
+export default (MediaManager);

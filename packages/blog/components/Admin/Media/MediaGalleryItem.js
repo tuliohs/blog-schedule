@@ -3,7 +3,7 @@ import { Edit } from "@material-ui/icons";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps } from "../../../types";
 
 const useStyles = makeStyles({
@@ -57,4 +57,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(MediaGalleryItem);
+export default MediaGalleryItem

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 //import PropTypes from "prop-types";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import WidgetByName from "./WidgetByName";
 import { useRouter } from "next/router";
@@ -35,5 +35,5 @@ const Section = ({ name }) => {
 //  layout: PropTypes.object.isRequired,
 //};
 //const mapStateToProps = (state) => ({layout: state.layout,})
-//export default connect(mapStateToProps)(Section);
+//export default (Section);
 export default Section

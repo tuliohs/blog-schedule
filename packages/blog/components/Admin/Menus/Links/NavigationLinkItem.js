@@ -25,7 +25,7 @@ import {
 } from "../../../../config/constants";
 import { makeStyles } from "@material-ui/styles";
 import { Done, Delete } from "@material-ui/icons";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { addressProps, authProps } from "../../../../types";
 import FetchBuilder from "../../../../lib/fetch";
 import { networkAction, setAppMessage } from "../../../../redux/actions";
@@ -256,4 +256,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinkItem);
+export default (NavigationLinkItem);

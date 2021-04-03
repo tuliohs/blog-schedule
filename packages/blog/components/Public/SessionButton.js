@@ -5,7 +5,7 @@
 
 import React, { useContext } from "react";
 import Link from "next/link";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import {
   GENERIC_SIGNOUT_TEXT,
   GENERIC_SIGNIN_TEXT,
@@ -45,5 +45,5 @@ function SessionButton(props) {
 //  profile: profileProps,
 //};
 //const mapStateToProps = (state) => ({ auth: state.auth, profile: state.profile, });
-//export default connect(mapStateToProps)(SessionButton);
+//export default (SessionButton);
 export default SessionButton

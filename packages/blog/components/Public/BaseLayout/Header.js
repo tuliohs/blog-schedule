@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Link from "next/link";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import SessionButton from "../SessionButton";
 import { siteInfoProps } from "../../../types";
 import { makeStyles } from "@material-ui/styles";
@@ -67,5 +67,5 @@ const mapStateToProps = (state) => ({
   siteinfo: state.siteinfo,
 });
 
-//export default connect(mapStateToProps)(Header);
+//export default (Header);
 export default Header

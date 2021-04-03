@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 //import PropTypes from "prop-types";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import Head from "next/head";
 import { formulateMediaUrl } from "../../../lib/utils.js";
 //import { addressProps, siteInfoProps } from "../../../types.js";
@@ -72,5 +72,5 @@ const MasterLayout = ({ children, title, props }) => {
 //  layout: state.layout,
 //  address: state.address,
 //});
-//export default connect(mapStateToProps)(MasterLayout);
+//export default (MasterLayout);
 export default MasterLayout

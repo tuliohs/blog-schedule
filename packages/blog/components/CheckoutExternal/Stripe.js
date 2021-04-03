@@ -8,7 +8,7 @@ import {
 } from "../../types";
 import { loadStripe } from "@stripe/stripe-js";
 import { ENROLL_BUTTON_TEXT } from "../../config/strings";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
 
@@ -37,7 +37,7 @@ const Stripe = (props) => {
         stripe: await stripePromise,
         sessionId: initiatePaymentResponse.paymentTracker,
       });
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const makePaymentRequest = async ({
@@ -98,4 +98,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(Stripe);
+export default Stripe

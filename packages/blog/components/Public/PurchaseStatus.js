@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import fetch from "isomorphic-unfetch";
@@ -73,7 +73,7 @@ const PurchaseStatus = (props) => {
     try {
       paymentStatus = await paymentStatus.json();
       setStatus(paymentStatus.status);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const makePaymentStatusRequest = async ({ purchaseId, backend, token }) => {
@@ -185,4 +185,4 @@ const mapStateToProps = (state) => ({
   address: state.address,
 });
 
-export default connect(mapStateToProps)(PurchaseStatus);
+export default PurchaseStatus

@@ -10,7 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { addressProps, featuredCourse, siteInfoProps } from "../types.js";
 import { makeStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
+////import { connect } from "react-redux";
 import { formulateMediaUrl } from "../lib/utils";
 import { URL_EXTENTION_COURSES } from "../config/constants";
 import { FREE_COST, FEATURED_SECTION_HEADER } from "../config/strings.js";
@@ -90,9 +90,6 @@ Hero.propTypes = {
   address: addressProps,
 };
 
-const mapStateToProps = (state) => ({
-  siteInfo: state.siteinfo,
-  address: state.address,
-});
-
-export default connect(mapStateToProps)(Hero);
+//const mapStateToProps = (state) => ({siteInfo: state.siteinfo,address: state.address,})
+//export default (Hero);
+export default Hero

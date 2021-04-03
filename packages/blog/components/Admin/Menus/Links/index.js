@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { ADD_NEW_LINK_BUTTON } from "../../../../config/strings";
 import FetchBuilder from "../../../../lib/fetch";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { authProps, addressProps } from "../../../../types";
 import { networkAction } from "../../../../redux/actions";
 import dynamic from "next/dynamic";
@@ -95,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationLinks);
+export default (NavigationLinks);

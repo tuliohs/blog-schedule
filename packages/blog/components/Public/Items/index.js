@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //import PropTypes from "prop-types";
-//import { connect } from "react-redux";
+////import { connect } from "react-redux";
 //import { networkAction } from "../../../redux/actions";
 import FetchBuilder from "../../../lib/fetch";
 import { Grid, Button } from "@material-ui/core";
@@ -93,5 +93,5 @@ const List = ({ showLoadMoreButton = true, initialItems,
 //};
 //const mapStateToProps = (state) => ({address: state.address,})
 //const mapDispatchToProps = (dispatch) => ({  dispatch: dispatch,});
-//export default connect(mapStateToProps, mapDispatchToProps)(List);
+//export default (List);
 export default List

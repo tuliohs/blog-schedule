@@ -2,7 +2,7 @@ import React, { useState, createRef } from "react";
 import PropTypes from "prop-types";
 import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   BUTTON_ADD_FILE,
   MEDIA_UPLOAD_BUTTON_TEXT,
@@ -130,4 +130,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Upload);
+export default (Upload);

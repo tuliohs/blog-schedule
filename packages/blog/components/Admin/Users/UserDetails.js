@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Typography, TextField, Button, Switch } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import {
   CAPTION_VERIFIED,
   CAPTION_UNVERIFIED,
@@ -79,7 +79,7 @@ const UserDetails = ({ user, auth, address, dispatch }) => {
     try {
       const response = await fetch.exec();
       setEnrolledCourses(response.enrolledCourses);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const getUserDataError = () => {
@@ -376,4 +376,4 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
+export default (UserDetails);
